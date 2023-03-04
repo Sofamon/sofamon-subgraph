@@ -1,3 +1,13 @@
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  spender: Bytes! # address
+  nftId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type ApprovalForAll @entity(immutable: true) {
   id: Bytes!
   owner: Bytes! # address
@@ -17,34 +27,21 @@ type OwnershipTransferred @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type TransferBatch @entity(immutable: true) {
+type Transfer @entity(immutable: true) {
   id: Bytes!
-  operator: Bytes! # address
   from: Bytes! # address
   to: Bytes! # address
-  ids: [BigInt]! # uint256[]
-  amounts: [BigInt]! # uint256[]
+  nftId: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type TransferSingle @entity(immutable: true) {
+type setLevel @entity(immutable: true) {
   id: Bytes!
-  operator: Bytes! # address
-  from: Bytes! # address
-  to: Bytes! # address
-  id: BigInt! # uint256
-  amount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type URI @entity(immutable: true) {
-  id: Bytes!
-  value: String! # string
-  id: BigInt! # uint256
+  owner: Bytes! # address
+  nftId: BigInt! # uint256
+  level: Int! # uint16
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

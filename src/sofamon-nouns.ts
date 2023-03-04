@@ -1,17 +1,32 @@
 import {
+  Approval as ApprovalEvent,
   ApprovalForAll as ApprovalForAllEvent,
   OwnershipTransferred as OwnershipTransferredEvent,
-  TransferBatch as TransferBatchEvent,
-  TransferSingle as TransferSingleEvent,
-  URI as URIEvent
-} from "../generated/Shimeji/Shimeji"
+  Transfer as TransferEvent,
+  setLevel as setLevelEvent
+} from "../generated/SofamonNouns/SofamonNouns"
 import {
+  Approval,
   ApprovalForAll,
   OwnershipTransferred,
-  TransferBatch,
-  TransferSingle,
-  URI
+  Transfer,
+  setLevel
 } from "../generated/schema"
+
+export function handleApproval(event: ApprovalEvent): void {
+  let entity = new Approval(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.owner = event.params.owner
+  entity.spender = event.params.spender
+  entity.nftId = event.params.id
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
 
 export function handleApprovalForAll(event: ApprovalForAllEvent): void {
   let entity = new ApprovalForAll(
@@ -44,15 +59,13 @@ export function handleOwnershipTransferred(
   entity.save()
 }
 
-export function handleTransferBatch(event: TransferBatchEvent): void {
-  let entity = new TransferBatch(
+export function handleTransfer(event: TransferEvent): void {
+  let entity = new Transfer(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.operator = event.params.operator
   entity.from = event.params.from
   entity.to = event.params.to
-  entity.ids = event.params.ids
-  entity.amounts = event.params.amounts
+  entity.nftId = event.params.id
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -61,27 +74,13 @@ export function handleTransferBatch(event: TransferBatchEvent): void {
   entity.save()
 }
 
-export function handleTransferSingle(event: TransferSingleEvent): void {
-  let entity = new TransferSingle(
+export function handlesetLevel(event: setLevelEvent): void {
+  let entity = new setLevel(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.operator = event.params.operator
-  entity.from = event.params.from
-  entity.to = event.params.to
-  entity.id = event.params.id
-  entity.amount = event.params.amount
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleURI(event: URIEvent): void {
-  let entity = new URI(event.transaction.hash.concatI32(event.logIndex.toI32()))
-  entity.value = event.params.value
-  entity.id = event.params.id
+  entity.owner = event.params.owner
+  entity.nftId = event.params.id
+  entity.level = event.params.level
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

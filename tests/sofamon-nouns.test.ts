@@ -7,10 +7,10 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { Address, BigInt } from "@graphprotocol/graph-ts"
-import { ApprovalForAll } from "../generated/schema"
-import { ApprovalForAll as ApprovalForAllEvent } from "../generated/Shimeji/Shimeji"
-import { handleApprovalForAll } from "../src/shimeji"
-import { createApprovalForAllEvent } from "./shimeji-utils"
+import { Approval } from "../generated/schema"
+import { Approval as ApprovalEvent } from "../generated/SofamonNouns/SofamonNouns"
+import { handleApproval } from "../src/sofamon-nouns"
+import { createApprovalEvent } from "./sofamon-nouns-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
@@ -18,16 +18,12 @@ import { createApprovalForAllEvent } from "./shimeji-utils"
 describe("Describe entity assertions", () => {
   beforeAll(() => {
     let owner = Address.fromString("0x0000000000000000000000000000000000000001")
-    let operator = Address.fromString(
+    let spender = Address.fromString(
       "0x0000000000000000000000000000000000000001"
     )
-    let approved = "boolean Not implemented"
-    let newApprovalForAllEvent = createApprovalForAllEvent(
-      owner,
-      operator,
-      approved
-    )
-    handleApprovalForAll(newApprovalForAllEvent)
+    let id = BigInt.fromI32(234)
+    let newApprovalEvent = createApprovalEvent(owner, spender, id)
+    handleApproval(newApprovalEvent)
   })
 
   afterAll(() => {
@@ -37,27 +33,21 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("ApprovalForAll created and stored", () => {
-    assert.entityCount("ApprovalForAll", 1)
+  test("Approval created and stored", () => {
+    assert.entityCount("Approval", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
     assert.fieldEquals(
-      "ApprovalForAll",
+      "Approval",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
       "owner",
       "0x0000000000000000000000000000000000000001"
     )
     assert.fieldEquals(
-      "ApprovalForAll",
+      "Approval",
       "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
-      "operator",
+      "spender",
       "0x0000000000000000000000000000000000000001"
-    )
-    assert.fieldEquals(
-      "ApprovalForAll",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
-      "approved",
-      "boolean Not implemented"
     )
 
     // More assert options:

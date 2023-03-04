@@ -3,34 +3,34 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: Shimeji
+    name: SofamonNouns
     network: goerli
     source:
-      address: "0xCf96F7A060B928fBEAefCBc6131c69c07733A9A1"
-      abi: Shimeji
-      startBlock: 8469545
+      address: "0x97950eBe70593aE1Bc5F07e3E434fE00ACBC0bB1"
+      abi: SofamonNouns
+      startBlock: 8586252
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
+        - Approval
         - ApprovalForAll
         - OwnershipTransferred
-        - TransferBatch
-        - TransferSingle
-        - URI
+        - Transfer
+        - setLevel
       abis:
-        - name: Shimeji
-          file: ./abis/Shimeji.json
+        - name: SofamonNouns
+          file: ./abis/SofamonNouns.json
       eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
         - event: ApprovalForAll(indexed address,indexed address,bool)
           handler: handleApprovalForAll
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
-        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
-          handler: handleTransferBatch
-        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
-          handler: handleTransferSingle
-        - event: URI(string,indexed uint256)
-          handler: handleURI
-      file: ./src/shimeji.ts
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: setLevel(indexed address,indexed uint256,indexed uint16)
+          handler: handlesetLevel
+      file: ./src/sofamon-nouns.ts

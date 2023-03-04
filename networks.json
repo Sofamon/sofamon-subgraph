@@ -1,8 +1,8 @@
 {
   "goerli": {
-    "Shimeji": {
-      "address": "0xCf96F7A060B928fBEAefCBc6131c69c07733A9A1",
-      "startBlock": 8469545
+    "SofamonNouns": {
+      "address": "0x97950eBe70593aE1Bc5F07e3E434fE00ACBC0bB1",
+      "startBlock": 8586252
     }
   }
 }
