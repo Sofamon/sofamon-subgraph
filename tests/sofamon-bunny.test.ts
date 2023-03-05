@@ -8,9 +8,9 @@ import {
 } from "matchstick-as/assembly/index"
 import { Address, BigInt } from "@graphprotocol/graph-ts"
 import { Approval } from "../generated/schema"
-import { Approval as ApprovalEvent } from "../generated/SofamonNouns/SofamonNouns"
-import { handleApproval } from "../src/sofamon-nouns"
-import { createApprovalEvent } from "./sofamon-nouns-utils"
+import { Approval as ApprovalEvent } from "../generated/SofamonBunny/SofamonBunny"
+import { handleApproval } from "../src/sofamon-bunny"
+import { createApprovalEvent } from "./sofamon-bunny-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0

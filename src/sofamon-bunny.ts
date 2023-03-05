@@ -4,7 +4,7 @@ import {
   OwnershipTransferred as OwnershipTransferredEvent,
   Transfer as TransferEvent,
   setLevel as setLevelEvent
-} from "../generated/SofamonNouns/SofamonNouns"
+} from "../generated/SofamonBunny/SofamonBunny"
 import {
   Approval,
   ApprovalForAll,

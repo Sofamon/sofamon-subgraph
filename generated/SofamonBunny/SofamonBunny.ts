@@ -136,9 +136,9 @@ export class setLevel__Params {
   }
 }
 
-export class SofamonNouns extends ethereum.SmartContract {
-  static bind(address: Address): SofamonNouns {
-    return new SofamonNouns("SofamonNouns", address);
+export class SofamonBunny extends ethereum.SmartContract {
+  static bind(address: Address): SofamonBunny {
+    return new SofamonBunny("SofamonBunny", address);
   }
 
   PRICE_PER_MINT(): BigInt {
@@ -440,10 +440,6 @@ export class ConstructorCall__Inputs {
   get _symbol(): string {
     return this._call.inputValues[1].value.toString();
   }
-
-  get _baseURI(): string {
-    return this._call.inputValues[2].value.toString();
-  }
 }
 
 export class ConstructorCall__Outputs {
@@ -688,6 +684,36 @@ export class SetLevelOfCall__Outputs {
   _call: SetLevelOfCall;
 
   constructor(call: SetLevelOfCall) {
+    this._call = call;
+  }
+}
+
+export class SetURICall extends ethereum.Call {
+  get inputs(): SetURICall__Inputs {
+    return new SetURICall__Inputs(this);
+  }
+
+  get outputs(): SetURICall__Outputs {
+    return new SetURICall__Outputs(this);
+  }
+}
+
+export class SetURICall__Inputs {
+  _call: SetURICall;
+
+  constructor(call: SetURICall) {
+    this._call = call;
+  }
+
+  get _baseURI(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+}
+
+export class SetURICall__Outputs {
+  _call: SetURICall;
+
+  constructor(call: SetURICall) {
     this._call = call;
   }
 }

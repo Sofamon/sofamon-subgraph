@@ -6,7 +6,7 @@ import {
   OwnershipTransferred,
   Transfer,
   setLevel
-} from "../generated/SofamonNouns/SofamonNouns"
+} from "../generated/SofamonBunny/SofamonBunny"
 
 export function createApprovalEvent(
   owner: Address,

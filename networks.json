@@ -1,8 +1,8 @@
 {
   "goerli": {
-    "SofamonNouns": {
-      "address": "0x97950eBe70593aE1Bc5F07e3E434fE00ACBC0bB1",
-      "startBlock": 8586252
+    "SofamonBunny": {
+      "address": "0x149b888374622a1126Af05d5eB746502679e0823",
+      "startBlock": 8588163
     }
   }
 }

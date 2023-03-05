@@ -1,13 +1,13 @@
 {
-  "name": "sofamon",
+  "name": "sofamon-subgraph",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ sofamon",
-    "create-local": "graph create --node http://localhost:8020/ sofamon",
-    "remove-local": "graph remove --node http://localhost:8020/ sofamon",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 sofamon",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ sofamon-subgraph",
+    "create-local": "graph create --node http://localhost:8020/ sofamon-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ sofamon-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 sofamon-subgraph",
     "test": "graph test"
   },
   "dependencies": {
